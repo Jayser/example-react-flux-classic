@@ -7,7 +7,7 @@ import carFormActions from '../../actions/CarFormActions';
 import carFilterStore from '../../stores/CarFilterStore';
 import carYearStore from '../../stores/CarYearStore';
 import carManufacturerStore from '../../stores/CarManufacturerStore';
-import carModelStore from '../../stores/CarModelStore';
+import carFilterModelStore from '../../stores/CarFilterModelStore';
 
 
 class CarFilterFormComponent extends React.Component {
@@ -21,14 +21,14 @@ class CarFilterFormComponent extends React.Component {
     carFilterStore.addChangeListener(() => () => this.onChangeSomeStore()());
     carYearStore.addChangeListener(() => this.onChangeSomeStore());
     carManufacturerStore.addChangeListener(() => this.onChangeSomeStore());
-    carModelStore.addChangeListener(() => this.onChangeSomeStore());
+    carFilterModelStore.addChangeListener(() => this.onChangeSomeStore());
   }
 
   componentWillUnmount() {
     carFilterStore.removeChangeListener(() => this.onChangeSomeStore());
     carYearStore.removeChangeListener(() => this.onChangeSomeStore());
     carManufacturerStore.removeChangeListener(() => this.onChangeSomeStore());
-    carModelStore.removeChangeListener(() => this.onChangeSomeStore());
+    carFilterModelStore.removeChangeListener(() => this.onChangeSomeStore());
   }
 
   getCarFilterState() {
@@ -48,7 +48,7 @@ class CarFilterFormComponent extends React.Component {
           title: man.title
         };
       }),
-      modelItems: carModelStore.getModels().map((m) => {
+      modelItems: carFilterModelStore.getModels().map((m) => {
         return {
           value: m.id,
           title: m.title

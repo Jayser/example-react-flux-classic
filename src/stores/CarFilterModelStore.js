@@ -14,7 +14,7 @@ function setModels(models) {
 
 const EVENT_CHANGE = 'change';
 
-class CarModelStore extends EventEmitter {
+class CarFilterModelStore extends EventEmitter {
   constructor() {
     super();
 
@@ -60,17 +60,17 @@ class CarModelStore extends EventEmitter {
   }
 }
 
-const carModelStore = new CarModelStore();
+const carFilterModelStore = new CarFilterModelStore();
 
-carModelStore.dispatchToken = appDispatcher.register(function(action) {
+carFilterModelStore.dispatchToken = appDispatcher.register(function(action) {
   switch(action.actionType) {
     case carFormConstants.CAR_FORM_SELECT_YEAR:
     case carFormConstants.CAR_FORM_SELECT_MANUFACTURER:
       appDispatcher.waitFor([carFilterStore.dispatchToken]);
-      carModelStore.checkAndLoad(carFilterStore.getYear(), carFilterStore.getManufacturerId());
+      carFilterModelStore.checkAndLoad(carFilterStore.getYear(), carFilterStore.getManufacturerId());
       break;
   }
 });
 
-export default carModelStore;
+export default carFilterModelStore;
 
